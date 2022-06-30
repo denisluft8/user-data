@@ -1,0 +1,15 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.head {
+  background-color: lightgray;
+  height: 40px;
+  font-size: 30px;
+  padding-left: 10px;
+  padding-top: 5px;
+}
