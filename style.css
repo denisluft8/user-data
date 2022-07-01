@@ -1,15 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 html,
 body {
   height: 100%;
   width: 100%;
   padding: 0;
   margin: 0;
+  background-color: #f3f4f4;
 }
 
 .head {
-  background-color: lightgray;
+  background-color: #e5e8e9;
   height: 40px;
   font-size: 30px;
-  padding-left: 10px;
+  display: flex;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  background-image: linear-gradient(#d8dcde, #e5e8e9, #d8dcde);
+}
+
+.user-data {
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+}
+
+.user-table {
+  border-collapse: collapse;
+  width: 75%;
+}
+
+.data-th {
+  font-size: 15px;
+  text-align: left;
+}
+.data-th > th {
+  padding: 12px;
+  border-bottom: 3px solid #f3f4f4;
+  color: grey;
+}
+.data-tr > td {
+  padding: 12px;
+  background-color: white;
+  border-bottom: 5px solid #f3f4f4;
+}
+
+.add-data{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   padding-top: 5px;
+}
+
+.add-data-inputs{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5px;
+  visibility: hidden;
+}
+
+@keyframes fadeIn{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+@keyframes fadeOut{
+  100%{opacity: 1;}
+  0%{opacity: 0;}
 }
