@@ -3,31 +3,31 @@ const userArr = [
     name: "Andréia de Souza",
     email: "andreiasouza@example.com",
     occupation: "Teacher",
-    birthday: "11/25/1988",
+    birthday: "1988-05-17",
   },
   {
     name: "Claudia dos Anjos",
     email: "claudiaanjo@example.com",
     occupation: "Designer",
-    birthday: "09/02/1992",
+    birthday: "1992-02-05",
   },
   {
     name: "Dionísio Abreu",
     email: "dionisioaab@example.com",
     occupation: "Veterinary",
-    birthday: "06/03/1989",
+    birthday: "1989-07-23",
   },
   {
     name: "Marcos Araújo",
     email: "maraujo@example.com",
     occupation: "Web Designer",
-    birthday: "10/05/1983",
+    birthday: "1983-05-10",
   },
   {
     name: "Paula Rodrigues",
     email: "paularodrigues@example.com",
     occupation: "Lawyer",
-    birthday: "25/12/1986",
+    birthday: "1986-12-11",
   },
 ];
 const head = document.createElement("header"); //criação do header
@@ -43,6 +43,8 @@ let table = document.createElement("table"); //criação da tabela
 userData.appendChild(table);
 table.setAttribute("class", "user-table");
 let tableRow = "";
+let infoButton = "";
+let myId = "info-button";
 
 const addData = document.createElement("div");
 document.body.appendChild(addData);
@@ -74,12 +76,23 @@ inputOccupation.setAttribute("class", "data-inputs");
 const inputBirthday = document.createElement("input");
 addDataInputs.appendChild(inputBirthday);
 inputBirthday.setAttribute("placeholder", "DD/MM/YYYY");
+inputBirthday.setAttribute("type", "date");
 inputBirthday.setAttribute("class", "data-inputs");
 
 const inputButton = document.createElement("button");
 addDataInputs.appendChild(inputButton);
 inputButton.setAttribute("class", "add-button");
 inputButton.innerHTML = "Add User";
+//modal
+const modal = document.querySelector(".info-dialog");
+const openModal = document.getElementsByClassName("show-button");
+const modalInfo = document.createElement("div");
+modal.appendChild(modalInfo);
+modalInfo.setAttribute("class", "dialog-info");
+const closeModal = document.createElement("button");
+modal.appendChild(closeModal);
+closeModal.setAttribute("class", "close-button");
+closeModal.innerHTML = "Close";
 
 function openInputs() {
   addDataInputs.setAttribute(
@@ -106,6 +119,11 @@ function addArr(array) {
     table.appendChild(tableRow);
     tableRow.setAttribute("class", "data-tr");
     tableRow.innerHTML = `<td>${userArr[i].name}</td><td>${userArr[i].email}</td><td>${userArr[i].occupation}</td><td>${userArr[i].birthday}</td>`;
+    infoButton = document.createElement("button");
+    tableRow.appendChild(infoButton);
+    infoButton.innerHTML = "Info";
+    infoButton.setAttribute("id", myId + i);
+    infoButton.setAttribute("class", "show-button");
   }
   window.localStorage.setItem("userArr", JSON.stringify(userArr));
 }
@@ -126,7 +144,21 @@ function sendInputs() {
   inputBirthday.value = "";
   localStorage.clear();
   window.localStorage.setItem("userArr", JSON.stringify(userArr));
+
+  modalSettings();
 }
 
+function modalSettings() {
+  for (let i = 0; i < openModal.length; i++) {
+    openModal[i].addEventListener("click", () => {
+      modalInfo.innerHTML = `<h2>Name: ${userArr[i].name}</h2><h2>Email: ${userArr[i].email}</h2><h2>Occupation: ${userArr[i].occupation}</h2><h2>Birthday: ${userArr[i].birthday}</h2>`;
+      modal.showModal();
+    });
+  }
+  closeModal.addEventListener("click", () => {
+    modal.close();
+  });
+}
+modalSettings();
 inputButton.addEventListener("click", sendInputs);
 inputButton.addEventListener("click", closeInputs);
